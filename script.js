@@ -31,3 +31,18 @@ function getComputerChoice() {
             return weaponThree;
     }
 }
+
+// Get Player's choice
+function getPlayerChoice() {
+
+    // Ask user for weapon
+    const playerChoice = prompt('Please choose your weapon:').toLowerCase();
+
+    // Loop the function call if invalid answer
+    if (playerChoice !== weaponOne &&
+        playerChoice !== weaponTwo &&
+        playerChoice !== weaponThree) {
+            alert('Invalid weapon! Please try again!')
+            getPlayerChoice();
+        }
+}
