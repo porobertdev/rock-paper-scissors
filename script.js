@@ -71,7 +71,6 @@ function playRound(computerSelection, playerSelection) {
         playerSelection === 'scissors' && computerSelection === 'paper') {
             return 'player';
         }
-    )
 }
 
 function game() {
@@ -106,7 +105,7 @@ function game() {
             playerScore++;
             console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
         }
-        
+
         // Display the score in the console somewhat nice.
         console.log('');
         console.log('-----------------------');
