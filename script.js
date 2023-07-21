@@ -91,6 +91,8 @@ function game() {
     // Loop through the game rounds
     for (i = 1; i <= GAME_ROUNDS; i++) {
 
+        console.warn(`\n\n==========\nROUND: ${i}/${GAME_ROUNDS}\n==========\n\n`)
+
         // Get the weapon for both players
         computerSelection = getComputerChoice();
         playerSelection = getPlayerChoice();
