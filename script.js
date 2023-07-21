@@ -106,6 +106,30 @@ function game() {
             playerScore++;
             console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
         }
+        
+        // Display the score in the console somewhat nice.
+        console.log('');
+        console.log('-----------------------');
+        console.log('CURRENT SCORE');
+        console.log('-----------------------');
+        console.log(`Computer: ${computerScore}`);
+        console.log(`Player: ${playerScore}`);
+        console.log('-----------------------');
+        console.log('')
+    }
+
+    // Display final winner based on total score
+    if (computerScore > playerScore) {
+        finalResult = 'YOU HAVE LOST! SHAME ON YOU!'
+    } else {
+        finalResult = 'YOU WON! CONGRATULATIONS!!!'
+    }
+
+    console.log('');
+    console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
+    console.log(finalResult);
+    console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
+    console.log('');
 }
 
 // start the game
