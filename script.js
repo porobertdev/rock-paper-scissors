@@ -122,8 +122,12 @@ function game() {
     // Display final winner based on total score
     if (computerScore > playerScore) {
         finalResult = 'YOU HAVE LOST! SHAME ON YOU!'
-    } else {
+    
+    } else if (playerScore > computerScore) {
         finalResult = 'YOU WON! CONGRATULATIONS!!!'
+    
+    } else {
+        finalResult = "THAT'S UNFORTUNATE! IT'S A DAMN TIE!"
     }
 
     console.log('');
