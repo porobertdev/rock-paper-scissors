@@ -46,3 +46,39 @@ function getPlayerChoice() {
             getPlayerChoice();
         }
 }
+
+function playRound(computerSelection, playerSelection) {
+
+    let winner;
+
+    // Check if it's a tie
+    if (computerSelection === playerSelection){
+        console.log('===========')
+        console.log("It's a tie!");
+        console.log('===========')
+        console.log('');
+        return; // stop the function here
+
+    } else if (
+        // computer win cases
+        computerSelection === 'rock' && playerSelection === 'scissors' ||
+        computerSelection === 'paper' && playerSelection === 'rock' ||
+        computerSelection === 'scissors' && playerSelection === 'paper') {
+            winner = 'computer';
+
+    } else if (
+        // player win cases
+        playerSelection === 'rock' && computerSelection === 'scissors' ||
+        playerSelection === 'paper' && computerSelection === 'rock' ||
+        playerSelection === 'scissors' && computerSelection === 'paper') {
+            winner = 'player';
+        }
+    )
+
+    // Print a message based on the winner
+    if (winner === 'computer') {
+        console.log(`Computer wins this round: ${computerSelection} beats ${playerSelection}`);
+    } else { // player wins the round
+        console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
+    }
+}
