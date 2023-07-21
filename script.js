@@ -82,3 +82,21 @@ function playRound(computerSelection, playerSelection) {
         console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
     }
 }
+
+function game() {
+
+    let computerSelection;
+    let playerSelection;
+
+    // Loop through the game rounds
+    for (i = 1; i <= GAME_ROUNDS; i++) {
+
+        // Get the weapon for both players
+        computerSelection = getComputerChoice();
+        playerSelection = getPlayerChoice();
+        
+        // Play the round
+        playRound(computerSelection, playerSelection);
+    }
+    
+}
