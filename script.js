@@ -45,6 +45,8 @@ function getPlayerChoice() {
             alert('Invalid weapon! Please try again!')
             getPlayerChoice();
         }
+    
+    return playerChoice;
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -79,8 +81,8 @@ function game() {
     let playerSelection;
     
     // Track score
-    let computerScore;
-    let playerScore;
+    let computerScore = 0;
+    let playerScore = 0;
     let winner;
     let finalResult;
 
