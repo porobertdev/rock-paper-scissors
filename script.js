@@ -100,3 +100,6 @@ function game() {
     }
     
 }
+
+// start the game
+game();
