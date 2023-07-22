@@ -55,6 +55,8 @@ function getPlayerChoice() {
                 getPlayerChoice();
             } else {
                 alert('BYE!');
+                // reset tries
+                tries = 0;
                 thisJustStopsTheProgramLol();
             }
         }
