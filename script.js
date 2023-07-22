@@ -61,7 +61,7 @@ function getPlayerChoice() {
     
     // reset the tries if user answered a valid weapon
     tries = 0;
-    
+
     return playerChoice;
 }
 
@@ -155,5 +155,9 @@ function game() {
 
 // start the game
 //game();
+
+// alert user about console
+alert('Please open DevTools console before playing :)');
+
 const startGameBtn = document.querySelector('.start-game');
 startGameBtn.addEventListener('click', game);
