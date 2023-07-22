@@ -138,4 +138,6 @@ function game() {
 }
 
 // start the game
-game();
+//game();
+const startGameBtn = document.querySelector('.start-game');
+startGameBtn.addEventListener('click', game);
