@@ -6,6 +6,9 @@ const weaponTwo = 'paper';
 const weaponThree = 'scissors';
 // rounds
 const GAME_ROUNDS = 5;
+// user's answering tries
+const WEAPON_TRIES = 3;
+let tries = 0;
 
 // Get Computer's choice
 function getComputerChoice() {
@@ -42,9 +45,22 @@ function getPlayerChoice() {
     if (playerChoice !== weaponOne &&
         playerChoice !== weaponTwo &&
         playerChoice !== weaponThree) {
-            alert('Invalid weapon! Please try again!')
-            getPlayerChoice();
+            
+            // increase the tries every time user writes invalid weapon
+            tries++;
+            
+            // check user 
+            if (tries < WEAPON_TRIES) {
+                alert('Invalid weapon! Please try again!')
+                getPlayerChoice();
+            } else {
+                alert('BYE!');
+                thisJustStopsTheProgramLol();
+            }
         }
+    
+    // reset the tries if user answered a valid weapon
+    tries = 0;
     
     return playerChoice;
 }
