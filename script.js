@@ -1,56 +1,45 @@
-// Game Settings
-// TO DO: better variable naming for weapons?
-// weapons
-const weaponOne = 'rock';
-const weaponTwo = 'paper';
-const weaponThree = 'scissors';
-// rounds
+// TO DO: declare variables for the weapons, such
+// that they can be used for different game modes?
+
 const GAME_ROUNDS = 5;
-// user's answering tries
-const WEAPON_TRIES = 3;
+const PLAYER_ANSWERS = 3;
 let tries = 0;
 
-// Get Computer's choice
 function getComputerChoice() {
 
-    // Get random number between min and max
+    // Get random number between 'min' and 'max'
     // Thanks to StackOverflow: https://stackoverflow.com/a/7228322/21600888
     function getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    // Choose a weapon randomly
-    const random = getRandomNumber(1, 3);
+    // Use the random number to choose a weapon bcoz I don't know about arrays yet
+    const randomWeapon = getRandomNumber(1, 3);
 
-    // Get weapon's name based on the number
-    switch (random) {
+    switch (randomWeapon) {
         case 1:
-            return weaponOne;
-        
+            return 'rock';
+
         case 2:
-            return weaponTwo;
+            return 'paper';
 
         case 3:
-            return weaponThree;
+            return 'scissors';
     }
 }
 
-// Get Player's choice
 function getPlayerChoice() {
 
-    // Ask user for weapon
     const playerChoice = prompt('Please choose your weapon:').toLowerCase();
 
     // Loop the function call if invalid answer
-    if (playerChoice !== weaponOne &&
-        playerChoice !== weaponTwo &&
-        playerChoice !== weaponThree) {
+    if (playerChoice !== 'rock' &&
+        playerChoice !== 'paper' &&
+        playerChoice !== 'scissors') {
             
-            // increase the tries every time user writes invalid weapon
             tries++;
-            
-            // check user 
-            if (tries < WEAPON_TRIES) {
+
+            if (tries < PLAYER_ANSWERS) {
                 alert('Invalid weapon! Please try again!')
                 getPlayerChoice();
             } else {
@@ -69,13 +58,8 @@ function getPlayerChoice() {
 
 function playRound(computerSelection, playerSelection) {
 
-    // Check if it's a tie
     if (computerSelection === playerSelection){
-        console.log('===========')
-        console.log("It's a tie!");
-        console.log('===========')
-        console.log('');
-        return; // stop the function here
+        return 'tie';
 
     } else if (
         // computer win cases
@@ -97,14 +81,14 @@ function game() {
 
     let computerSelection;
     let playerSelection;
-    
-    // Track score
+
     let computerScore = 0;
     let playerScore = 0;
-    let winner;
-    let finalResult;
+    
+    let roundWinner;
+    let gameResult;
 
-    // Loop through the game rounds
+    // Loop to play all the rounds
     for (i = 1; i <= GAME_ROUNDS; i++) {
 
         console.warn(`\n\n==========\nROUND: ${i}/${GAME_ROUNDS}\n==========\n\n`)
@@ -114,19 +98,24 @@ function game() {
         playerSelection = getPlayerChoice();
         
         // Play the round
-        winner = playRound(computerSelection, playerSelection);
+        roundWinner = playRound(computerSelection, playerSelection);
 
-        // Print a message based on the winner
-        if (winner === 'computer') {
+        if (roundWinner === 'computer') {
             computerScore++;
             console.log(`Computer wins this round: ${computerSelection} beats ${playerSelection}`);
         
-        } else if (winner === 'player') { // player wins the round
+        } else if (roundWinner === 'player') {
             playerScore++;
             console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
+        
+        } else if (roundWinner === 'tie') {
+            console.log('===========')
+            console.log("It's a tie!");
+            console.log('===========')
+            console.log('');
         }
 
-        // Display the score in the console somewhat nice.
+        // Display the score after each round in the console somewhat nice.
         console.log('');
         console.log('-----------------------');
         console.log('CURRENT SCORE');
@@ -137,28 +126,25 @@ function game() {
         console.log('')
     }
 
-    // Display final winner based on total score
+    // Get the final winner
     if (computerScore > playerScore) {
-        finalResult = 'YOU HAVE LOST! SHAME ON YOU!'
+        gameResult = 'YOU HAVE LOST! SHAME ON YOU!'
     
     } else if (playerScore > computerScore) {
-        finalResult = 'YOU WON! CONGRATULATIONS!!!'
+        gameResult = 'YOU WON! CONGRATULATIONS!!!'
     
     } else {
-        finalResult = "THAT'S UNFORTUNATE! IT'S A DAMN TIE!"
+        gameResult = "THAT'S UNFORTUNATE! IT'S A DAMN TIE!"
     }
 
     console.log('');
     console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
-    console.log(finalResult);
+    console.log(gameResult);
     console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
     console.log('');
 }
 
-// start the game
-//game();
-
-// alert user about console
+// alert player about console because the game take place there
 alert('Please open DevTools console before playing :)');
 
 const startGameBtn = document.querySelector('.start-game');
