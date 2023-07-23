@@ -30,7 +30,7 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 
-    const playerChoice = prompt('Please choose your weapon:').toLowerCase();
+    let playerChoice = prompt('Please choose your weapon:').toLowerCase();
 
     // Loop the function call if invalid answer
     // .indexOf() method returns number '-1' if it can't find the array's element
@@ -40,7 +40,7 @@ function getPlayerChoice() {
 
             if (tries < PLAYER_ANSWERS) {
                 alert('Invalid weapon! Please try again!')
-                getPlayerChoice();
+                playerChoice = getPlayerChoice();
             } else {
                 alert('BYE!');
                 // reset tries
