@@ -33,9 +33,8 @@ function getPlayerChoice() {
     const playerChoice = prompt('Please choose your weapon:').toLowerCase();
 
     // Loop the function call if invalid answer
-    if (playerChoice !== 'rock' &&
-        playerChoice !== 'paper' &&
-        playerChoice !== 'scissors') {
+    // .indexOf() method returns number '-1' if it can't find the array's element
+    if (['rock', 'paper', 'scissors'].indexOf(playerChoice) == -1) {
             
             tries++;
 
