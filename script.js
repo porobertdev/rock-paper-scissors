@@ -50,7 +50,7 @@ function playRound(computerSelection, playerSelection) {
         }
 }
 
-function game(playerName) {
+function game() {
 
     // The choice of each player
     let computerSelection;
@@ -64,10 +64,6 @@ function game(playerName) {
     let roundWinner;
     let gameResult;
     let currentRound = 1;
-
-    // get player's name
-    console.log(playerName);
-    createGameUI();
 
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice();
@@ -128,7 +124,7 @@ function game(playerName) {
     console.log('');
 }
 
-function createGameUI() {
+function createGameUI(playerName) {
 
     // main game container
     const gameContainer = document.createElement('div');
@@ -156,7 +152,12 @@ function createGameUI() {
         // name above HP bar
         const p = document.createElement('p');
         p.classList.add('name');
-        p.textContent = player;
+
+        if (player == 'player') {
+            player = playerName;
+        }
+
+        p.textContent = player.toUpperCase();
         
         // HP bar
         const hpBar = document.createElement('div');
@@ -210,7 +211,7 @@ function getPlayerName() {
     input.addEventListener('keydown', (event) => {
         if (event.key == 'Enter') {
             document.body.removeChild(nameContainer);
-            game(input.value.toUpperCase());
+            createGameUI(input.value.toUpperCase());
         }
     })
 }
