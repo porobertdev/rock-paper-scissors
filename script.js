@@ -63,6 +63,7 @@ function game() {
     // Game stats
     let roundWinner;
     let gameResult;
+    let currentRound = 1;
 
     // get player's name
     const playerName = getPlayerName();
@@ -73,7 +74,7 @@ function game() {
     // Loop to play until a player reaches SCORE
     while (computerScore < SCORE && playerScore < SCORE) {
 
-        console.warn(`\n\n==========\nROUND: ${i}/${GAME_ROUNDS}\n==========\n\n`)
+        console.warn(`\n\n==========\nROUND: ${currentRound}\n==========\n\n`)
 
         // Get the weapon for both players
         computerSelection = getComputerChoice();
