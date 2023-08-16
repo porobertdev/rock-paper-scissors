@@ -1,9 +1,7 @@
 // TO DO: declare variables for the weapons, such
 // that they can be used for different game modes?
 
-const GAME_ROUNDS = 5;
-const PLAYER_ANSWERS = 3;
-let tries = 0;
+const SCORE = 5;
 
 function getComputerChoice() {
 
@@ -29,30 +27,6 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-
-    let playerChoice = prompt('Please choose your weapon:').toLowerCase();
-
-    // Loop the function call if invalid answer
-    // .includes() method returns a boolean
-    if (['rock', 'paper', 'scissors'].includes(playerChoice) === false) {
-            
-            tries++;
-
-            if (tries < PLAYER_ANSWERS) {
-                alert('Invalid weapon! Please try again!')
-                playerChoice = getPlayerChoice();
-            } else {
-                alert('BYE!');
-                // reset tries
-                tries = 0;
-                thisJustStopsTheProgramLol();
-            }
-        }
-    
-    // reset the tries if user answered a valid weapon
-    tries = 0;
-
-    return playerChoice;
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -86,6 +60,9 @@ function game() {
     
     let roundWinner;
     let gameResult;
+
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoce();
 
     // Loop to play all the rounds
     for (i = 1; i <= GAME_ROUNDS; i++) {
@@ -142,9 +119,3 @@ function game() {
     console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
     console.log('');
 }
-
-// alert player about console because the game take place there
-alert('Please open DevTools console before playing :)');
-
-const startGameBtn = document.querySelector('.start-game');
-startGameBtn.addEventListener('click', game);
