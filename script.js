@@ -64,8 +64,8 @@ function game() {
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoce();
 
-    // Loop to play all the rounds
-    for (i = 1; i <= GAME_ROUNDS; i++) {
+    // Loop to play until a player reaches SCORE
+    while (computerScore < SCORE && playerScore < SCORE) {
 
         console.warn(`\n\n==========\nROUND: ${i}/${GAME_ROUNDS}\n==========\n\n`)
 
