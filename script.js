@@ -52,17 +52,23 @@ function playRound(computerSelection, playerSelection) {
 
 function game() {
 
+    // The choice of each player
     let computerSelection;
     let playerSelection;
 
+    // Default Score
     let computerScore = 0;
     let playerScore = 0;
     
+    // Game stats
     let roundWinner;
     let gameResult;
 
+    // get player's name
+    const playerName = getPlayerName();
+
     computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoce();
+    playerSelection = getPlayerChoice();
 
     // Loop to play until a player reaches SCORE
     while (computerScore < SCORE && playerScore < SCORE) {
@@ -119,3 +125,29 @@ function game() {
     console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
     console.log('');
 }
+
+
+function getPlayerName() {
+    document.body.removeChild(playButton);
+    
+    // main container for input box
+    const nameContainer = document.createElement('div');
+    nameContainer.classList.add('name-container', 'rectangle');
+    document.body.appendChild(nameContainer);
+
+    // input box nested
+    const input = document.createElement('input');
+    input.setAttribute('autofocus', '');
+    input.setAttribute('placeholder', 'YOUR NAME');
+    nameContainer.appendChild(input);
+
+    input.addEventListener('keydown', (event) => {
+        if (event.key == 'Enter') {
+            document.body.removeChild(nameContainer);
+            return input.value.toUpperCase();
+        }
+    })
+}
+
+const playButton = document.querySelector('.play-btn');
+playButton.addEventListener('click', game);

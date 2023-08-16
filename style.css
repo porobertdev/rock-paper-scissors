@@ -11,8 +11,6 @@ body {
     height: 300px;
     width: 300px;
     border-radius: 300px;
-    background-color: #DDF9C1;
-    border: 20px solid #C44536;
 
     display: flex;
     justify-content: center;
@@ -23,4 +21,24 @@ body {
     color: #6F1D1B;
     font-size: 60px;
     font-family: Inter;
+}
+
+.rectangle {
+    background-color: #DDF9C1;
+    border: 20px solid #C44536;
+}
+
+/* asking for player name */
+.name-container {
+    width: 300px;
+    height: 50px;
+    background-color: ;
+}
+
+input {
+    background-color: #DDF9C1;
+    width: 293px;
+    height: 45px;
+    text-align: center;
+    text-transform: uppercase;
 }
