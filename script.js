@@ -67,6 +67,7 @@ function game(playerName) {
 
     // get player's name
     console.log(playerName);
+    createGameUI();
 
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice();
@@ -127,6 +128,70 @@ function game(playerName) {
     console.log('');
 }
 
+function createGameUI() {
+
+    // main game container
+    const gameContainer = document.createElement('div');
+    const playersContainer = document.createElement('div');
+
+    gameContainer.classList.add('game-container');
+    playersContainer.classList.add('players-container');
+    
+    document.body.appendChild(gameContainer);
+    gameContainer.appendChild(playersContainer);
+
+    // create two divs for both players
+    const players = ['player', 'computer'];
+
+    for (player of players) {
+        // main div for each player
+        // each has name, HP bar, and weapon rectangle
+        const div = document.createElement('div');
+        div.classList.add(player);
+        playersContainer.append(div);
+
+        // div for stats, holding name and HP bar
+        const stats = document.createElement('div');
+        stats.classList.add('stats');
+        // name above HP bar
+        const p = document.createElement('p');
+        p.classList.add('name');
+        p.textContent = player;
+        
+        // HP bar
+        const hpBar = document.createElement('div');
+        hpBar.classList.add('hp', 'bar');
+
+        // Damage bar
+        const dmgBar = document.createElement('div');
+        dmgBar.classList.add('dmg', 'bar');
+
+        // weapon
+        const weapon = document.createElement('div');
+        weapon.classList.add('weapon', 'rectangle');
+
+        div.appendChild(stats);
+        stats.appendChild(p);
+        stats.appendChild(hpBar);
+        hpBar.appendChild(dmgBar);
+        div.appendChild(weapon);
+    }
+
+    // create the buttons
+    const buttons = ['(R)OCK', '(P)APER', '(S)CISSORS'];
+
+    // main container for buttons
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+    gameContainer.appendChild(btnContainer);
+
+    for (btn of buttons) {
+        const btnDiv = document.createElement('button');
+        btnDiv.classList.add( (btn[1] + btn.slice(3)).toLowerCase() );
+        btnDiv.textContent = btn;
+        btnContainer.appendChild(btnDiv);
+    }
+}
 
 function getPlayerName() {
     document.body.removeChild(playButton);
