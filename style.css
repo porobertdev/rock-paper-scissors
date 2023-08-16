@@ -1,0 +1,26 @@
+body {
+    background-color: #F46036;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-btn {
+    /* rounded circle */
+    height: 300px;
+    width: 300px;
+    border-radius: 300px;
+    background-color: #DDF9C1;
+    border: 20px solid #C44536;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-btn p {
+    color: #6F1D1B;
+    font-size: 60px;
+    font-family: Inter;
+}
