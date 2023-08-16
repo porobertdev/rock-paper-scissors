@@ -67,12 +67,13 @@ function game() {
 
     // get player's name
     const playerName = getPlayerName();
+    console.log(playerName);
 
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice();
 
     // Loop to play until a player reaches SCORE
-    while (computerScore < SCORE && playerScore < SCORE) {
+   // while (computerScore < SCORE && playerScore < SCORE) {
 
         console.warn(`\n\n==========\nROUND: ${currentRound}\n==========\n\n`)
 
@@ -107,7 +108,7 @@ function game() {
         console.log(`Player: ${playerScore}`);
         console.log('-----------------------');
         console.log('')
-    }
+    //}
 
     // Get the final winner
     if (computerScore > playerScore) {
