@@ -50,7 +50,7 @@ function playRound(computerSelection, playerSelection) {
         }
 }
 
-function game() {
+function game(playerName) {
 
     // The choice of each player
     let computerSelection;
@@ -66,7 +66,6 @@ function game() {
     let currentRound = 1;
 
     // get player's name
-    const playerName = getPlayerName();
     console.log(playerName);
 
     computerSelection = getComputerChoice();
@@ -146,10 +145,10 @@ function getPlayerName() {
     input.addEventListener('keydown', (event) => {
         if (event.key == 'Enter') {
             document.body.removeChild(nameContainer);
-            return input.value.toUpperCase();
+            game(input.value.toUpperCase());
         }
     })
 }
 
 const playButton = document.querySelector('.play-btn');
-playButton.addEventListener('click', game);
+playButton.addEventListener('click', getPlayerName);
