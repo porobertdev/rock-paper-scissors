@@ -26,7 +26,12 @@ function getComputerChoice() {
     }
 }
 
-function getPlayerChoice() {
+function getPlayerChoice(event) {
+    let text = event.currentTarget.textContent;
+    let playerSelection = (text[1] + text.slice(3)).toLowerCase();
+    
+    // play the game
+    game(playerSelection);
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -50,11 +55,10 @@ function playRound(computerSelection, playerSelection) {
         }
 }
 
-function game() {
+function game(playerSelection) {
 
     // The choice of each player
     let computerSelection;
-    let playerSelection;
 
     // Default Score
     let computerScore = 0;
@@ -65,9 +69,6 @@ function game() {
     let gameResult;
     let currentRound = 1;
 
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-
     // Loop to play until a player reaches SCORE
    // while (computerScore < SCORE && playerScore < SCORE) {
 
@@ -75,7 +76,6 @@ function game() {
 
         // Get the weapon for both players
         computerSelection = getComputerChoice();
-        playerSelection = getPlayerChoice();
         
         // Play the round
         roundWinner = playRound(computerSelection, playerSelection);
@@ -191,6 +191,8 @@ function createGameUI(playerName) {
         btnDiv.classList.add( (btn[1] + btn.slice(3)).toLowerCase() );
         btnDiv.textContent = btn;
         btnContainer.appendChild(btnDiv);
+
+        btnDiv.addEventListener('click', getPlayerChoice);
     }
 }
 
