@@ -67,6 +67,8 @@ function game(playerSelection) {
     let roundWinner;
     let gameResult;
     currentRound ++;
+    const p = document.querySelector('.round-text');
+    p.textContent = `ROUND: ${currentRound}`;
 
     // Loop to play until a player reaches SCORE
    // while (computerScore < SCORE && playerScore < SCORE) {
