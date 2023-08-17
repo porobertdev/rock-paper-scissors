@@ -278,7 +278,14 @@ function getPlayerName() {
     input.addEventListener('keydown', (event) => {
         if (event.key == 'Enter') {
             document.body.removeChild(nameContainer);
-            createGameUI(input.value.toUpperCase());
+            
+            let name = event.currentTarget.value.toUpperCase();
+
+            if (!name) {
+                name = 'PLAYER'
+            }
+            
+            createGameUI(name);
         }
     })
 }
