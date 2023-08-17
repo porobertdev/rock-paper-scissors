@@ -299,8 +299,15 @@ function createGameUI(playerName) {
     }
 }
 
+function playGame(event) {
+    if ( ['click', 'Enter'].includes(event.key || event.type)) {
+        document.body.removeChild(playButton);
+        document.body.removeEventListener('keydown', playGame);
+        getPlayerName();
+    }
+}
+
 function getPlayerName() {
-    document.body.removeChild(playButton);
     
     // main container for input box
     const nameContainer = document.createElement('div');
@@ -329,4 +336,5 @@ function getPlayerName() {
 }
 
 const playButton = document.querySelector('.play-btn');
-playButton.addEventListener('click', getPlayerName);
+playButton.addEventListener('click', playGame);
+document.body.addEventListener('keydown', playGame);
