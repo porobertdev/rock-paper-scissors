@@ -68,6 +68,13 @@ input {
     align-items: center;
 }
 
+.round-text {
+    font-size: 50px;
+    /* push it up between the HP bars */
+    margin-bottom: 300px;
+    font-weight: 700;
+}
+
 .player,
 .computer {
     display: flex;

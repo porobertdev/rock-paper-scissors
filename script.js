@@ -154,6 +154,12 @@ function createGameUI(playerName) {
 
         if (player == 'player') {
             player = playerName;
+        } else {
+            // loop created the div container for 'computer' in this iteration
+            // so, create the paragraph for ROUND text and append it before '.computer'
+            const pRound = document.createElement('p');
+            pRound.classList.add('round-text');
+            playersContainer.insertBefore(pRound, div);
         }
 
         p.textContent = player.toUpperCase();
