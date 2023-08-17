@@ -2,6 +2,9 @@
 // that they can be used for different game modes?
 
 const SCORE = 5;
+let computerScore = 0;
+let playerScore = 0;
+let currentRound = 0;
 
 function getComputerChoice() {
 
@@ -59,15 +62,11 @@ function game(playerSelection) {
 
     // The choice of each player
     let computerSelection;
-
-    // Default Score
-    let computerScore = 0;
-    let playerScore = 0;
     
     // Game stats
     let roundWinner;
     let gameResult;
-    let currentRound = 1;
+    currentRound ++;
 
     // Loop to play until a player reaches SCORE
    // while (computerScore < SCORE && playerScore < SCORE) {
