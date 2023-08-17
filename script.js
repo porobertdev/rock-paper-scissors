@@ -68,10 +68,7 @@ function game(playerSelection) {
     let gameResult;
     currentRound ++;
     const p = document.querySelector('.round-text');
-    p.textContent = `ROUND: ${currentRound}`;
-
-    // Loop to play until a player reaches SCORE
-   // while (computerScore < SCORE && playerScore < SCORE) {
+    p.textContent = `ROUND: ${currentRound}`
 
         console.warn(`\n\n==========\nROUND: ${currentRound}\n==========\n\n`)
 
@@ -105,24 +102,37 @@ function game(playerSelection) {
         console.log(`Player: ${playerScore}`);
         console.log('-----------------------');
         console.log('')
-    //}
 
-    // Get the final winner
-    if (computerScore > playerScore) {
-        gameResult = 'YOU HAVE LOST! SHAME ON YOU!'
-    
-    } else if (playerScore > computerScore) {
-        gameResult = 'YOU WON! CONGRATULATIONS!!!'
-    
-    } else {
-        gameResult = "THAT'S UNFORTUNATE! IT'S A DAMN TIE!"
+    // check if score was reached
+    if (playerScore == 5 || computerScore == 5) {
+
+        // Get the final winner
+        if (computerScore > playerScore) {
+            gameResult = 'YOU HAVE LOST! SHAME ON YOU!'
+        
+        } else if (playerScore > computerScore) {
+            gameResult = 'YOU WON! CONGRATULATIONS!!!'
+        
+        } else {
+            gameResult = "THAT'S UNFORTUNATE! IT'S A DAMN TIE!"
+        }
+
+        console.log('');
+        console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
+        console.log(gameResult);
+        console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
+        console.log('');
+
+        endGame(gameResult);
     }
+}
 
-    console.log('');
-    console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
-    console.log(gameResult);
-    console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
-    console.log('');
+function endGame(result) {
+    
+    // remove btn-container to prevent player for playing more
+    const container = document.querySelector('.game-container');
+    const buttons = document.querySelector('.btn-container');
+    container.removeChild(buttons);
 }
 
 function createGameUI(playerName) {
