@@ -5,6 +5,7 @@ const SCORE = 5;
 let computerScore = 0;
 let playerScore = 0;
 let currentRound = 0;
+const keys = ['click', 'r', 'p', 's'];
 
 function getComputerChoice() {
 
@@ -30,11 +31,44 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice(event) {
-    let text = event.currentTarget.textContent;
-    let playerSelection = (text[1] + text.slice(3)).toLowerCase();
-    
-    // play the game
-    game(playerSelection);
+
+    let text;
+    let playerSelection;
+
+    if ( keys.includes(event.key || event.type) ) { 
+
+        /*
+        check if player pressed a keyboard button instead clicking.
+
+        It's a workaround, because the event listener for keys
+        is added to the body element, and it doesn't due
+        currentTarget (which refers to body element) unless
+        a button is clicked first.
+
+        And if I add the event listener on the buttons, then they
+        won't work if they're not clicked firstly too.
+        */
+        if (!!event.key) {
+            switch(true) {
+                case (event.key == 'r'):
+                    playerSelection = 'rock';
+                    break;
+
+                case (event.key == 'p'):
+                    playerSelection = 'paper';
+                    break;
+
+                case (event.key == 's'):
+                    playerSelection = 'scissors';
+            }
+        } else {
+            // it's a click and event.target refers to the button element
+            text = event.currentTarget.textContent;
+            playerSelection = (text[1] + text.slice(3)).toLowerCase();
+        }
+        // play the game
+        game(playerSelection);
+    }
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -181,6 +215,7 @@ function endGame(result) {
     const container = document.querySelector('.game-container');
     const buttons = document.querySelector('.btn-container');
     container.removeChild(buttons);
+    document.body.removeEventListener('keydown', getPlayerChoice);
 }
 
 function createGameUI(playerName) {
@@ -258,6 +293,9 @@ function createGameUI(playerName) {
         btnContainer.appendChild(btnDiv);
 
         btnDiv.addEventListener('click', getPlayerChoice);
+
+        // key presses
+        document.body.addEventListener('keydown', getPlayerChoice);
     }
 }
 
