@@ -58,11 +58,57 @@ function playRound(computerSelection, playerSelection) {
         }
 }
 
+function setWeaponDamage() {
+    
+    /*
+        Function to set the damage for the weapons.
+        
+        Each score does some damage to the loser of the round.
+        Thus, we need to get the current width of the HP bar,
+        and calculate the damage based on how many hits (SCORE)
+        would take to get width 0px.
+
+        Basically, the damage is the reduction of the width of .dmg
+        bar hidden behind the .hp bar, which gets revealed when
+        changing its width.
+    */
+
+    const bar = document.querySelector('.bar');
+
+    // Get value of bar's 'width' CSS property
+    // Thanks to StackOverflow: https://stackoverflow.com/a/6338234/21600888
+    const barStyles = window.getComputedStyle(bar);
+    const width = +(barStyles.getPropertyValue('width').replace('px', ''));
+    let weaponDmg = width / SCORE;
+
+    return [width, weaponDmg];
+}
+
+function dealDamage(player) {
+
+    /*
+        This function deals damage to the 'player' (loser of the round).
+        It's invoked each from game() each time there's a round winner.
+    */
+
+    const damage = setWeaponDamage();
+
+    const bar = document.querySelector(`.${player} .stats .dmg`);
+    const styles = window.getComputedStyle(bar);
+
+    if (styles.getPropertyValue('width').includes(damage[0])) {
+        bar.style.width = (damage[0] - damage[1]) + 'px';
+    } else {
+        const currentWidth = bar.style.width;
+        bar.style.width = +(currentWidth.replace('px', '')) - damage[1] + 'px';
+    }
+}
+
 function game(playerSelection) {
 
     // The choice of each player
     let computerSelection;
-    
+
     // Game stats
     let roundWinner;
     let gameResult;
@@ -80,10 +126,12 @@ function game(playerSelection) {
 
         if (roundWinner === 'computer') {
             computerScore++;
+            dealDamage('player');
             console.log(`Computer wins this round: ${computerSelection} beats ${playerSelection}`);
         
         } else if (roundWinner === 'player') {
             playerScore++;
+            dealDamage('computer');
             console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
         
         } else if (roundWinner === 'tie') {
