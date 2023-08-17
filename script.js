@@ -154,6 +154,16 @@ function game(playerSelection) {
 
         // Get the weapon for both players
         computerSelection = getComputerChoice();
+
+        for (player of ['player', 'computer']) {
+            const img = document.querySelector(`.${player} .weapon img`);
+            
+            if (player == 'player') {
+                img.setAttribute('src', `./img/${player}/${playerSelection}.svg`);
+            } else {
+                img.setAttribute('src', `./img/${player}/${computerSelection}.svg`);
+            }
+            }
         
         // Play the round
         roundWinner = playRound(computerSelection, playerSelection);
@@ -271,11 +281,14 @@ function createGameUI(playerName) {
         const weapon = document.createElement('div');
         weapon.classList.add('weapon', 'rectangle');
 
+        const img = document.createElement('img')
+
         div.appendChild(stats);
         stats.appendChild(p);
         stats.appendChild(hpBar);
         hpBar.appendChild(dmgBar);
         div.appendChild(weapon);
+        weapon.appendChild(img);
     }
 
     // create the buttons
