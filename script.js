@@ -34,8 +34,13 @@ function getPlayerChoice(event) {
 
     let text;
     let playerSelection;
+    const btnContainerLength = document.querySelectorAll('.btn-container button').length;
 
-    if ( keys.includes(event.key || event.type) ) { 
+    /*
+        btnContainerLength is 1 if the game ends. Thus, don't take action
+        on 'R P S' keys after that.
+    */
+    if ( keys.includes(event.key || event.type) && btnContainerLength > 1) { 
 
         /*
         check if player pressed a keyboard button instead clicking.
@@ -219,11 +224,25 @@ function alertWinner(player, end) {
 
 function endGame(result) {
     
-    // remove btn-container to prevent player for playing more
-    const container = document.querySelector('.game-container');
-    const buttons = document.querySelector('.btn-container');
-    container.removeChild(buttons);
-    document.body.removeEventListener('keydown', getPlayerChoice);
+    const btnContainer = document.querySelector('.btn-container');
+    const buttons = document.querySelectorAll('.btn-container button');
+
+    buttons.forEach( btn => {btnContainer.removeChild(btn)});
+
+    const newGame = document.createElement('button');
+    newGame.classList.add('new-game');
+    newGame.textContent = '(N)EW GAME';
+    btnContainer.appendChild(newGame);
+
+    // event handler
+    function reloadGame(event) {
+        if (event.key == 'n' || event.type == 'click') {
+            window.location.reload(); // stolen from mooniidev's rps game @The Odin Project :D
+        }
+    }
+
+    newGame.addEventListener('click', reloadGame);
+    document.body.addEventListener('keydown', reloadGame);
 }
 
 function createGameUI(playerName) {
