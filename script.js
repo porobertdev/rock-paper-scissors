@@ -150,8 +150,6 @@ function game(playerSelection) {
     const p = document.querySelector('.round-text');
     p.textContent = `ROUND: ${currentRound}`
 
-        console.warn(`\n\n==========\nROUND: ${currentRound}\n==========\n\n`)
-
         // Get the weapon for both players
         computerSelection = getComputerChoice();
 
@@ -171,52 +169,19 @@ function game(playerSelection) {
         if (roundWinner === 'computer') {
             computerScore++;
             dealDamage('player');
-            console.log(`Computer wins this round: ${computerSelection} beats ${playerSelection}`);
-        
+
         } else if (roundWinner === 'player') {
             playerScore++;
             dealDamage('computer');
-            console.log(`Player wins this round: ${playerSelection} beats ${computerSelection}`);
         
         } else if (roundWinner === 'tie') {
-            console.log('===========')
-            console.log("It's a tie!");
-            console.log('===========')
-            console.log('');
         }
 
-        // Display the score after each round in the console somewhat nice.
-        console.log('');
-        console.log('-----------------------');
-        console.log('CURRENT SCORE');
-        console.log('-----------------------');
-        console.log(`Computer: ${computerScore}`);
-        console.log(`Player: ${playerScore}`);
-        console.log('-----------------------');
-        console.log('')
-
-    // check if score was reached
+    // check if game ended (score was reached)
     if (playerScore == 5 || computerScore == 5) {
-
-        // Get the final winner
-        if (computerScore > playerScore) {
-            gameResult = 'YOU HAVE LOST! SHAME ON YOU!'
-        
-        } else if (playerScore > computerScore) {
-            gameResult = 'YOU WON! CONGRATULATIONS!!!'
-        
-        } else {
-            gameResult = "THAT'S UNFORTUNATE! IT'S A DAMN TIE!"
-        }
-
-        console.log('');
-        console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
-        console.log(gameResult);
-        console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
-        console.log('');
-
         alertWinner(roundWinner, true);
         endGame(gameResult);
+
     } else {
         alertWinner(roundWinner, false);
     }
