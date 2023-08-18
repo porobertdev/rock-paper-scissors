@@ -132,3 +132,48 @@ button {
     font-family: Inter;
     font-weight: 500;
 }
+
+.player .winner {
+    animation-name: playerWinner;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+}
+
+@keyframes playerWinner {
+    0%   {background: yellow;}
+    25%  {background: #DDF9C1;}
+    50%  {background: yellow;}
+    75%  {background: #DDF9C1;}
+    100% {background: yellow;}
+}
+
+.computer .winner {
+    animation-name: computerWinner;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+}
+
+@keyframes computerWinner {
+    0%   {background: red;}
+    25%  {background: #DDF9C1;}
+    50%  {background: red;}
+    75%  {background: #DDF9C1;;}
+    100% {background: red;}
+}
+
+.spin {
+    animation-name: spin;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -215,7 +215,40 @@ function game(playerSelection) {
         console.log('-/-/-/-/-/-/-/-/-/-/-/-/-/-/-')
         console.log('');
 
+        alertWinner(roundWinner, true);
         endGame(gameResult);
+    } else {
+        alertWinner(roundWinner, false);
+    }
+}
+
+function alertWinner(player, end) {
+
+    /*
+        This function plays an animation based on whether the round
+        was finished or the game ended (score was reached by a player).
+        
+        // FIX:   set a delay or something before removing the class.
+                  It looks like there's a bug. If player press buttons
+                  fast, then once the game ends, the 'winner' class
+                  doesn't get removed, causing the element to use
+                  'winner' animation infinitely (somehow it inherits
+                  'animation-iteration-count' property from '.spin'
+                  rule), thus, not allowing the '.spin' animation to run.
+    */
+
+    if (player != 'tie') {
+        const winner = document.querySelector(`.${player} .weapon`);
+
+        if (end) {
+            winner.classList.add('spin');
+        } else {
+            winner.classList.add('winner');
+        }
+        
+        winner.addEventListener('animationend', (event) => {
+            event.currentTarget.classList.remove('winner');
+        })
     }
 }
 
