@@ -180,6 +180,7 @@ function game(playerSelection) {
             dealDamage('computer');
         
         } else if (roundWinner === 'tie') {
+            alert("it's a tie");
         }
 
     // check if game ended (score was reached)
